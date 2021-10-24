@@ -1,16 +1,36 @@
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import Dropdown from 'react-dropdown';
 import styles from "../styles/sass/createMonitaPage.module.scss";
 import validator from 'validator';
-
+import { useRouter } from 'next/router';
 //import CSS
 import 'react-dropdown/style.css';
 import "react-datepicker/dist/react-datepicker.css";
 
+//Eddited
+import { useSnackbar } from 'notistack';
+import { Controller, useForm } from 'react-hook-form';
+import {
+    List,
+    ListItem,
+    Typography,
+    TextField,
+    Button,
+    Link,
+  } from '@material-ui/core';
+
+//Date
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import Stack from '@mui/material/Stack';
 
 //Import my components
 import {createMonitaPost} from '../lib/api';
+import { style } from "@mui/system";
+import GroupUserCard from "../components/group-user-card";
+import { Layout } from "../components/Layout1";
+
 
 
 //Types and Interfaces
@@ -40,12 +60,7 @@ const Header = ()=>{
     )
 }
 
-const DateComponent = () => {
-    const [endDate, setEndDate] = useState(new Date());
-    return (
-      <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
-    );
-};
+
 
 const SelectedUser = ({email}: ISelectedUser) =>{
     return (
@@ -60,8 +75,29 @@ const SelectedUser = ({email}: ISelectedUser) =>{
     
 
 export default  function CreateMonitaGroup(){
-    const [selectedUsers, setSelectedUsers] = useState<Array<any>>([]);
+    const router = useRouter();
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+    const {handleSubmit, control,formState: { errors }} = useForm();
+
+
+    const [value, setDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+    const [emailError, setEmailError] = useState("");
+    
+
+
+    const submitHandler = async ({name, endDate} : any) => {
+        console.log(endDate);
+        // closeSnackbar();
+        
+        // const data = {name, description: "", endDate, selectedUsers}
+        // const groupId = await createMonitaPost(data);
+        // if(groupId){
+        //     router.push(`/monita-groups/${groupId}`);
+        // }
+      };
+
+    const [selectedUsers, setSelectedUsers] = useState<Array<any>>([]);
     const [infoMessage, setInfoMessage] = useState("");
     const [selectUser, setSelectUser] = useState("");
     const [state, setState] = useState({
@@ -87,131 +123,135 @@ export default  function CreateMonitaGroup(){
 
       function userHandleChange(e: any){
         setSelectUser(e.target.value);
+        setEmailError("");
       }
 
-      async function createMonita(){
-          
-          if(state.name && endDate ){
-            const data = {...state,  endDate, selectedUsers}
-            
-            const message = await createMonitaPost(data);
-            setInfoMessage(message);
-          }else{
-            setInfoMessage("Талбарыг бүрэн бөглөнө үү");
-          }
-        
-       
-        alert(infoMessage);
-      }
 function addUser(){
+
     
     if (validator.isEmail(selectUser)) {
         setSelectedUsers([...selectedUsers, {email: selectUser, name: null, imageUrl: null}]);
         setSelectUser("");
-    } 
-    
-    else{
-        alert("Имэйл хаяг оруулна уу");
+    } else if(!selectUser){
+        setEmailError("Имэйл хаяг оруулна уу");
+    }else{
+        setEmailError("Имэйл хаягаа зөв оруулна уу");
     }
+    
+   
     
 }
-      const monitaPhases = (number: string) => {
-        // select option-с орж ирж байга утга стринг тул энэ хэсэг 
-        // заавал string to number хувиргалт хийнэ.
-        const num = Number(number);
 
-        // content гэсэн array todor huv niit songoson element ee oruulj ogno
-        let content = [];
-        for (let i = 1; i <= num; i++) {
-            //songoson toogoor davtalt hiij array push hiine
-            content.push(<div key={i} className={styles.phase__input_info}>
-                            <div className={styles.phase__input_info__field}>
-                                <p>Нэр:</p> 
-                                <input
-                                    name="phase-title"
-                                    type="text"
-                                    placeholder="Сэдвийн нэр..."
-                                    value=""
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <DateComponent/>
-                            </div>
-                        </div>)
-                }
 
-            return content;
-    }
-
-      function onSelect(eventKey: any, event: Object) {
-          setState({ ...state, phase: eventKey.value });
-      }
 
     return (
-        <div className={styles.create_monita}>
-            <Header/>
-        <div className={styles.create_monita__general}>
-            <div className={styles.create_monita__name}>
-                <div className={styles.create_monita__name__title}>Нэр</div>
-                    <div className={styles.create_monita__name__input}>
-                        <input
-                            name="name"
-                            type="text"
-                            placeholder="Монита нэр оруулна уу..."
-                            onChange={handleChange}
-                            value={state.name}
-                            required
-                        />
-                    </div>
-            
-            </div>
-            <div className={styles.create_monita__date}>
-                <div className={styles.create_monita__date_title}>Монита задрах өдөр</div>
-                <div><DatePicker selected={endDate} onChange={(date) => setEndDate(date)} /></div>
-            </div>
-        </div>
-            {/* <hr className={styles.create-monita__line"/> */}
-        <div className={styles.create_monita__date}>
-   
-        </div>
-        {/* <div className={styles.phase}>
-        <div className={styles.phase__name}>
-        <p>Хэдэн үе шаттай монта зохиох вэ?</p>
-        </div>
-        <Dropdown options={options} onChange={onSelect} value={defaultOption} placeholder="Select an option" />
-        </div> */}
-        <div className={styles.phase__entered}>
-       {
-           //React component for ashiglaj bolohgui bsan tul ene function ashiglaj davtal ashiglav @h
-       }
-        {/* <ol>{monitaPhases(phase)}</ol> */}
+        <Layout>
+            <form onSubmit={handleSubmit(submitHandler)} className={styles.form}>
+            <Typography component="h1" variant="h1">
+            Монта үүсгэх
+            </Typography>
+            <List>
+                <ListItem>  
+                    <Controller
+                    name="name"
+                    control={control}
+                    defaultValue=""
+                    rules={{
+                        required: true,
+                        minLength: 2,
+                    }}
+                    render={({ field }) => (
+                        <TextField
+                        variant="outlined"
+                        fullWidth
+                        id="name"
+                        label="Нэр"
+                        inputProps={{ type: 'name' }}
+                        error={Boolean(errors.name)}
+                        helperText={
+                            errors.name
+                            ? errors.name.type === 'minLength'
+                                ? 'Нэрийн урт 1 тэмдэгтээс их байна'
+                                : 'Заавал нэр оруулна уу'
+                            : ''
+                        }
+                        {...field}
+                        ></TextField>
+                    )}
+                    ></Controller>
+                </ListItem>
+                <ListItem>
+                    
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <Controller
+                name="endDate"
+                control={control}
+                defaultValue={new Date()}
+                render={({ field: { ref, ...rest } }) => (
+                <DesktopDatePicker
+                    label="Бэлэг өгөх өдөр"
+                    id="date-picker-dialog"
+                    value={endDate}
+                    minDate={new Date('2017-01-01')}
+                    onChange={(newValue) => {
+                        setEndDate(newValue);
+                     }}
+          renderInput={(params) => <TextField {...params} />}
+        />
+        )}
+              />
+         </LocalizationProvider>
+                </ListItem>
+                <ListItem>
+               
+            <div className={styles.email_field}>
+                <TextField
+                  variant="outlined"
+                  value={selectUser}
+                  onChange={userHandleChange}
+                  fullWidth
+                  id="email"
+                  label="Имэйл хаяг"
+                ></TextField>
 
-        </div>
-        <div className={styles.user_section}>
-            <div className={styles.user_section__input_field}>
-            <input
-                            name="name"
-                            type="text"
-                            placeholder="Монитад оролцох хүний имэйл хаягийг оруулна уу"
-                            onChange={userHandleChange}
-                            value={selectUser}
-                            required
-                        />
-               <button onClick={addUser}>Нэмэх</button>
-            </div>
-            <div className={styles.user_section__users}>
-                
-                    {
-                        selectedUsers.map((element, index) => <SelectedUser key={index} email={element.email}/>)
-                    }
-            </div>
-        </div>
-        <div >
-            <button onClick={createMonita}> Үүсгэх</button>
-        </div>
-        </div>
-        
+                {emailError && <div className={styles.email_error}>{emailError}</div>}
+                </div>
+                <Button variant="contained" onClick={addUser} style={{
+                  border: "none",
+                  margin: "0 3rem",
+                  width: "30%",
+                  height: "50px",
+                  borderRadius: "15px",
+                  backgroundColor: "#E94057",
+                }}>
+                Нэмэх
+            </Button>
+              
+          </ListItem>
+          <ListItem>
+              <List>
+          {selectedUsers.map((user, index) => {
+          return  (<ListItem key={index}>
+              <GroupUserCard props={user}/>
+              </ListItem>);
+        })}
+        </List>
+              </ListItem>
+          
+            <ListItem>
+            <Button variant="contained" type="submit" style={{
+                  border: "none",
+                  width: "100%",
+                  height: "50px",
+                  borderRadius: "15px",
+                  backgroundColor: "#E94057",
+                }}>
+                Үүсгэх
+            </Button>
+          </ListItem>
+          </List>
+            </form>
+        </Layout>
     );
 }
 

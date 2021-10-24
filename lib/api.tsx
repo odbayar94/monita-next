@@ -22,7 +22,7 @@ return json;
 export async function createMonitaPost(data: Object) {
     
     const response = await fetchAPI("monitas",data);
-    return response.message;
+    return response.data._id;
 }
 
 
