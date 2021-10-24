@@ -174,9 +174,10 @@ const removeUserHandler = (item: Object) => {
     return (
         <Layout>
             <form onSubmit={handleSubmit(submitHandler)} className={styles.form}>
-            <Typography component="h3" variant="h3" style={{margin:"2rem 0 0 5rem", fontSize:"2rem" }}>
+          
+            <h3 className={styles.title}>
             Монта үүсгэх
-            </Typography>
+            </h3>
             <List style={{marginTop:"2rem", fontSize:"2rem" }}>
                 <ListItem>  
                     <Controller

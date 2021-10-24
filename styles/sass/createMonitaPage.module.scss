@@ -131,9 +131,24 @@
     letter-spacing: 0.03333em;
 }
   }
-  .title{
+
+  .title {
+    font-size: 72px;
+    text-align: center;
     margin: 0 auto;
+    background: linear-gradient(
+      135deg,
+      #5335cf 0%,
+      #de005e 25%,
+      #f66e48 50%,
+      #de005e 75%,
+      #5335cf 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
+  
+  
   .add_user_btn{
     
       border: none;
