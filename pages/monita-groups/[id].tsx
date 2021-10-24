@@ -1,14 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import NextLink from 'next/link';
+
+//My Imports
 import {getSingleMonita} from '../../lib/api'
-// import GroupUserCard from "../../components/group-user-card";
 import GroupUserCard from "../../components/group-user-card";
+import { Layout } from '../../components/Layout1';
 
 export default function MonitaScreen(props: any) {
 
   const { monitaGroup } = props;
   return (
     <>
+    <Layout>
     <div
         className="groupName"
         style={{ display: "flex", justifyContent: "center" }}
@@ -67,6 +70,7 @@ export default function MonitaScreen(props: any) {
 
       {/* group user lists end */}
     </div>
+    </Layout>
       </>
   );
 }
