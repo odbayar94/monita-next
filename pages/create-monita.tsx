@@ -86,15 +86,18 @@ export default  function CreateMonitaGroup(){
     
 
 
-    const submitHandler = async ({name, endDate} : any) => {
-        console.log(endDate);
-        // closeSnackbar();
+    const submitHandler = async ({name} : any) => {
+        closeSnackbar();
+        if(selectedUsers.length !== 0){
+            const data = {name, description: "", endDate, selectedUsers}
+            const groupId = await createMonitaPost(data);
+            if(groupId){
+                router.push(`/monita-groups/${groupId}`);
+            }
+        }else{
+            enqueueSnackbar("Монитад оролцох хүний имэйл хаяг оруулна уу", { variant: "error" });
+        }
         
-        // const data = {name, description: "", endDate, selectedUsers}
-        // const groupId = await createMonitaPost(data);
-        // if(groupId){
-        //     router.push(`/monita-groups/${groupId}`);
-        // }
       };
 
     const [selectedUsers, setSelectedUsers] = useState<Array<any>>([]);
@@ -147,10 +150,10 @@ function addUser(){
     return (
         <Layout>
             <form onSubmit={handleSubmit(submitHandler)} className={styles.form}>
-            <Typography component="h1" variant="h1">
+            <Typography component="h3" variant="h3" style={{margin:"2rem 0 0 5rem", fontSize:"2rem" }}>
             Монта үүсгэх
             </Typography>
-            <List>
+            <List style={{marginTop:"2rem", fontSize:"2rem" }}>
                 <ListItem>  
                     <Controller
                     name="name"
@@ -190,13 +193,12 @@ function addUser(){
                 render={({ field: { ref, ...rest } }) => (
                 <DesktopDatePicker
                     label="Бэлэг өгөх өдөр"
-                    id="date-picker-dialog"
                     value={endDate}
                     minDate={new Date('2017-01-01')}
                     onChange={(newValue) => {
                         setEndDate(newValue);
                      }}
-          renderInput={(params) => <TextField {...params} />}
+                    renderInput={(params) => <TextField {...params} />}
         />
         )}
               />
