@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import NextLink from 'next/link';
-
+import Button from '@material-ui/core/Button';
 //My Imports
 import {getSingleMonita} from '../../lib/api'
 import GroupUserCard from "../../components/group-user-card";
@@ -70,6 +70,19 @@ export default function MonitaScreen(props: any) {
 
       {/* group user lists end */}
     </div>
+    <div style={{display: "flex", justifyContent: "center"}}>
+    <Button variant="contained" type="submit" style={{
+                  border: "none",
+                  width: "80%",
+                  marginTop: "2rem",
+                  height: "50px",
+                  borderRadius: "15px",
+                  backgroundColor: "#E94057",
+                  
+                }}>
+                Монита тодруулах
+            </Button>
+            </div>
     </Layout>
       </>
   );

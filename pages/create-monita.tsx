@@ -138,7 +138,7 @@ function addUser(){
     } else if(!selectUser){
         setEmailError("Имэйл хаяг оруулна уу");
     }else{
-        setEmailError("Имэйл хаягаа зөв оруулна уу");
+        setEmailError("Зөв имэйл хаяг оруулна уу");
     }
     
    
@@ -205,38 +205,46 @@ function addUser(){
          </LocalizationProvider>
                 </ListItem>
                 <ListItem>
-               
-            <div className={styles.email_field}>
-                <TextField
-                  variant="outlined"
-                  value={selectUser}
-                  onChange={userHandleChange}
-                  fullWidth
-                  id="email"
-                  label="Имэйл хаяг"
-                ></TextField>
-
-                {emailError && <div className={styles.email_error}>{emailError}</div>}
-                </div>
-                <Button variant="contained" onClick={addUser} style={{
-                  border: "none",
-                  margin: "0 3rem",
-                  width: "30%",
-                  height: "50px",
-                  borderRadius: "15px",
-                  backgroundColor: "#E94057",
-                }}>
-                Нэмэх
-            </Button>
-              
-          </ListItem>
+                    <div className={styles.email_add_section}>
+                        <div className={styles.email_field}>
+                            <div>
+                                <TextField
+                                variant="outlined"
+                                value={selectUser}
+                                onChange={userHandleChange}
+                                fullWidth
+                                id="email"
+                                label="Имэйл хаяг"
+                                ></TextField>
+                            </div>
+                            {emailError && <div className={styles.email_error}>{emailError}</div>}
+                        </div>
+                        <div>
+                        <Button variant="contained" onClick={addUser} style={{
+                                border: "none",
+                                margin: "0.2rem 1rem 1rem 1rem",
+                                width: "10%",
+                                height: "50px",
+                                fontSize: "2rem",
+                                borderRadius: "15px",
+                                backgroundColor: "#E94057",
+                                }}>
+                                +
+                            </Button>
+                        </div>
+                        </div>
+                    </ListItem>
+       
           <ListItem>
-              <List>
-          {selectedUsers.map((user, index) => {
-          return  (<ListItem key={index}>
-              <GroupUserCard props={user}/>
-              </ListItem>);
-        })}
+              <List style={{fontSize: "1rem", width:"85%"}}>
+                    <div style={{display: "flex", flexDirection:"column"}}>
+                        {selectedUsers.map((user, index) => {
+                                return  (
+                                    <GroupUserCard key={index} props={user}/>
+                                    );
+                                })}
+                    </div>
+          
         </List>
               </ListItem>
           

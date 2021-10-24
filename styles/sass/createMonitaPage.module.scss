@@ -109,11 +109,21 @@
   }
 
 .email{
-  
+  &_add_section{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+  &_field{
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+  }
   &_error{
     color: #f44336;
     font-size: 0.75rem;
     margin-top: 3px;
+    margin-left: 1rem;
     text-align: left;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     font-weight: 400;
@@ -123,4 +133,18 @@
   }
   .title{
     margin: 0 auto;
+  }
+  .add_user_btn{
+    
+      border: none;
+      margin: 1rem 1rem 1rem 1rem;
+      width: 10%;
+      height: 50px;
+      border-radius: 15px;
+      background-color: #E94057;
+    
+  }
+
+  .user_card{
+    width: 100%;
   }
