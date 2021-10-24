@@ -28,8 +28,8 @@ import Stack from '@mui/material/Stack';
 //Import my components
 import {createMonitaPost} from '../lib/api';
 import { style } from "@mui/system";
-import GroupUserCard from "../components/group-user-card";
 import { Layout } from "../components/Layout1";
+import UserCard from "../components/UserCard";
 
 
 
@@ -89,7 +89,10 @@ export default  function CreateMonitaGroup(){
     const submitHandler = async ({name} : any) => {
         closeSnackbar();
         if(selectedUsers.length !== 0){
-            const data = {name, description: "", endDate, selectedUsers}
+            const users = selectedUsers.map(el => ({email:el, name: null, imageUrl: null}))
+            
+            const data = {name, description: "", endDate, selectedUsers: users}
+          
             const groupId = await createMonitaPost(data);
             if(groupId){
                 router.push(`/monita-groups/${groupId}`);
@@ -100,7 +103,11 @@ export default  function CreateMonitaGroup(){
         
       };
 
-    const [selectedUsers, setSelectedUsers] = useState<Array<any>>([]);
+    // const [selectedUsers, setSelectedUsers] = useState<Array<any>>([]);
+    const [selectedUsers, setSelectedUsers] = useState([]);
+
+    // const [selectedUsers, setSelectedUsers] = useState(() => new Set());
+
     const [infoMessage, setInfoMessage] = useState("");
     const [selectUser, setSelectUser] = useState("");
     const [state, setState] = useState({
@@ -133,8 +140,16 @@ function addUser(){
 
     
     if (validator.isEmail(selectUser)) {
-        setSelectedUsers([...selectedUsers, {email: selectUser, name: null, imageUrl: null}]);
-        setSelectUser("");
+        const unique = selectedUsers.indexOf(selectUser);
+        if( unique === -1){
+            // setSelectedUsers([...selectedUsers, {email: selectUser, name: null, imageUrl: null}]);
+            setSelectedUsers([...selectedUsers,selectUser]);
+            setSelectUser("");
+            setEmailError("");
+        }else{
+            setEmailError("Имэйл давхцаж байна");
+        }
+        
     } else if(!selectUser){
         setEmailError("Имэйл хаяг оруулна уу");
     }else{
@@ -146,6 +161,15 @@ function addUser(){
 }
 
 
+const removeUserHandler = (item: Object) => {
+
+    var array = [...selectedUsers]; 
+    var index = array.indexOf(item)
+    if (index !== -1) {
+      array.splice(index, 1);
+      setSelectedUsers(array);
+    }
+  };
 
     return (
         <Layout>
@@ -220,14 +244,14 @@ function addUser(){
                             {emailError && <div className={styles.email_error}>{emailError}</div>}
                         </div>
                         <div>
-                        <Button variant="contained" onClick={addUser} style={{
+                        <Button variant="contained" onClick={addUser}  color="secondary" style={{
                                 border: "none",
                                 margin: "0.2rem 1rem 1rem 1rem",
                                 width: "10%",
                                 height: "50px",
                                 fontSize: "2rem",
                                 borderRadius: "15px",
-                                backgroundColor: "#E94057",
+                                
                                 }}>
                                 +
                             </Button>
@@ -238,9 +262,19 @@ function addUser(){
           <ListItem>
               <List style={{fontSize: "1rem", width:"85%"}}>
                     <div style={{display: "flex", flexDirection:"column"}}>
-                        {selectedUsers.map((user, index) => {
+                        {selectedUsers.map((item, index) => {
                                 return  (
-                                    <GroupUserCard key={index} props={user}/>
+                                    <div key={index} className={styles.user_card}>
+                                    <UserCard email={item}/>
+                                        <Button
+                                        variant="contained"
+                                        color="secondary"
+                                       className={styles.remove_button}
+                                        onClick={() => removeUserHandler(item)}
+                                        >
+                                        x
+                                        </Button>
+                                    </div>
                                     );
                                 })}
                     </div>
@@ -249,12 +283,11 @@ function addUser(){
               </ListItem>
           
             <ListItem>
-            <Button variant="contained" type="submit" style={{
+            <Button variant="contained" type="submit" color="secondary" style={{
                   border: "none",
                   width: "100%",
                   height: "50px",
                   borderRadius: "15px",
-                  backgroundColor: "#E94057",
                 }}>
                 Үүсгэх
             </Button>

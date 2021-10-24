@@ -146,5 +146,14 @@
   }
 
   .user_card{
-    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    button{
+      border-radius: 50%;
+    }
+  }
+
+  .remove_button{
+    border-radius: 50%;
   }
