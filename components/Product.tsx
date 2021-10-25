@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface IProduct {
   title: string;
-  products: [];
+  products: Array<any>;
   addWish: Function;
   remove: Function;
 }
