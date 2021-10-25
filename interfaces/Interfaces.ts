@@ -1,5 +1,4 @@
 import {ObjectId } from 'mongoose';
-import {IPost, IPosts} from './Posts';
 import { Request, Response, NextFunction } from "express";
 import { IMonitaGroup } from '.';
 
