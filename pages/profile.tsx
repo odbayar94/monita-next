@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { useState } from "react";
 import Head from "next/head";
 import styles from "../styles/sass/profile.module.scss";
-import { Layout } from "../components/Layout1";
+import { useUser } from "@auth0/nextjs-auth0";
 import {
   faCoffee,
   faHeart,
@@ -13,6 +13,11 @@ import Avatar from "../components/Avatar";
 import { Product } from "../components/Product";
 
 const Profile: NextPage = ({ products }: any) => {
+  
+  const user:any = useUser();
+  const data = user;
+  console.log("user: ", data);
+
   const [isSelected, setIsSelected] = useState(0);
   const [wishLists, setWishLists] = useState([
     {
@@ -45,7 +50,6 @@ const Profile: NextPage = ({ products }: any) => {
   };
 
   return (
-    <Layout>
     <div className={styles.container}>
       <Head>
         <title>Profile</title>
@@ -124,7 +128,6 @@ const Profile: NextPage = ({ products }: any) => {
         )}
       </div>
     </div>
-    </Layout>
   );
 };
 export default Profile;

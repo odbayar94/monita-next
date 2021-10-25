@@ -119,7 +119,7 @@ const NavBar = ({ children }: any) => {
                 color="black"
                 style={{ fontSize: "1em", alignSelf: "center" }}
               />
-              <Link href="/monita-groups">
+              <Link href="/monita-groups/617564c159c35cc71ba515d7">
                 <p style={{ fontSize: "1em", paddingLeft: "8px" }}>
                   Monita Group 1
                 </p>

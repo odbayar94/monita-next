@@ -4,14 +4,12 @@ import Button from '@material-ui/core/Button';
 //My Imports
 import {getSingleMonita} from '../../lib/api'
 import GroupUserCard from "../../components/group-user-card";
-import { Layout } from '../../components/Layout1';
 
 export default function MonitaScreen(props: any) {
 
   const { monitaGroup } = props;
   return (
     <>
-    <Layout>
     <div
         className="groupName"
         style={{ display: "flex", justifyContent: "center" }}
@@ -83,7 +81,6 @@ export default function MonitaScreen(props: any) {
                 Монита тодруулах
             </Button>
             </div>
-    </Layout>
       </>
   );
 }

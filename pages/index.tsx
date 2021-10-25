@@ -7,8 +7,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useUser } from "@auth0/nextjs-auth0";
 
 const Home: NextPage = () => {
-  const user = useUser();
-  console.log("user", user);
+
 
   return (
     <div className={styles.container}>

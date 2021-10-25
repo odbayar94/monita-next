@@ -28,7 +28,6 @@ import Stack from '@mui/material/Stack';
 //Import my components
 import {createMonitaPost} from '../lib/api';
 import { style } from "@mui/system";
-import { Layout } from "../components/Layout1";
 import UserCard from "../components/UserCard";
 
 
@@ -172,7 +171,6 @@ const removeUserHandler = (item: Object) => {
   };
 
     return (
-        <Layout>
             <form onSubmit={handleSubmit(submitHandler)} className={styles.form}>
           
             <h3 className={styles.title}>
@@ -295,7 +293,6 @@ const removeUserHandler = (item: Object) => {
           </ListItem>
           </List>
             </form>
-        </Layout>
     );
 }
 
