@@ -174,7 +174,7 @@ const removeUserHandler = (item: Object) => {
             <form onSubmit={handleSubmit(submitHandler)} className={styles.form}>
           
             <h3 className={styles.title}>
-            Монта үүсгэх
+            Монита үүсгэх
             </h3>
             <List style={{marginTop:"2rem", fontSize:"2rem" }}>
                 <ListItem>  
