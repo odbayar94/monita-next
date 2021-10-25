@@ -208,7 +208,7 @@ const removeUserHandler = (item: Object) => {
                 </ListItem>
                 <ListItem>
                     
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <Controller
                 name="endDate"
                 control={control}
@@ -225,7 +225,7 @@ const removeUserHandler = (item: Object) => {
         />
         )}
               />
-         </LocalizationProvider>
+         </LocalizationProvider> */}
                 </ListItem>
                 <ListItem>
                     <div className={styles.email_add_section}>
