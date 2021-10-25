@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { useState } from "react";
 import Head from "next/head";
 import styles from "../styles/sass/profile.module.scss";
+import { Layout } from "../components/Layout1";
 import {
   faCoffee,
   faHeart,
@@ -44,6 +45,7 @@ const Profile: NextPage = ({ products }: any) => {
   };
 
   return (
+    <Layout>
     <div className={styles.container}>
       <Head>
         <title>Profile</title>
@@ -122,6 +124,7 @@ const Profile: NextPage = ({ products }: any) => {
         )}
       </div>
     </div>
+    </Layout>
   );
 };
 export default Profile;
