@@ -23,13 +23,6 @@ export interface IResponse {
     data?: IData;
 }
 
-export interface Example {
-    name: string;
-    items: {
-        [key: string]: Item
-    };
-}
-
 export interface IUser{
   id: ObjectId;
   token: string;
