@@ -9,3 +9,6 @@ module.exports = {
     return config;
   },
 };
+
+const withImages = require("next-images");
+module.exports = withImages();
