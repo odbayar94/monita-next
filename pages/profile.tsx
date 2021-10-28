@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import { useState } from "react";
 import Head from "next/head";
 import styles from "../styles/sass/profile.module.scss";
-import { useUser } from "@auth0/nextjs-auth0";
 import {
   faCoffee,
   faHeart,
@@ -14,9 +13,6 @@ import { Product } from "../components/Product";
 
 const Profile: NextPage = ({ products }: any) => {
   
-  const user:any = useUser();
-  const data = user;
-  console.log("user: ", data);
 
   const [isSelected, setIsSelected] = useState(0);
   const [wishLists, setWishLists] = useState([

@@ -10,6 +10,7 @@ export default function Header () {
   
   return (
     <header>
+      
       <noscript>
         <style>{`.nojs-show { opacity: 1; top: 0; }`}</style>
       </noscript>
@@ -28,12 +29,14 @@ export default function Header () {
                 Sign in
               </a>
           </>}
-          {session && <>
+          {session && 
+          <a href={`/profile`}>
+          <>
             {session.user.image && <span style={{backgroundImage: `url(${session.user.image})` }} className={styles.avatar}/>}
             <span className={styles.signedInText}>
               <small>Signed in as</small><br/>
               <strong>{ session.user.name}</strong>
-              <strong>{ session.user.userID}</strong>
+              
               </span>
             <a
                 href={`/api/auth/signout`}
@@ -45,7 +48,10 @@ export default function Header () {
               >
                 Sign out
               </a>
-          </>}
+             
+          </>
+          </a>
+          }
         </p>
       </div>
     </header>

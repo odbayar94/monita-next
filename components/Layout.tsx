@@ -1,13 +1,14 @@
-import React, { Children } from "react";
-import NavBar from "./Navbar";
-import Header from "components/Header";
+import { Container, Row, Col } from "react-bootstrap";
+import Navbar from "components/Navbar";
 
-export const Layout = ({ children }) => {
+
+import React from "react";
+
+export default ({ children }) => {
   return (
-    <div className="content" style={{ width: "100%" }}>
-       <Header/>
-      <NavBar children={children} />
-      {/* {children} */}
-    </div>
+    <Container>
+        <Navbar />
+        <div>{children}</div>
+    </Container>
   );
 };

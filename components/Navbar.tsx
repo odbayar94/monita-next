@@ -1,4 +1,7 @@
+import { Navbar, Nav } from "react-bootstrap";
+import Header from "components/Header";
 import React, { useState } from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -9,14 +12,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-const NavBar = ({ children }: any) => {
+
+export default () => {
+
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
-    <div className="home-container" style={{ display: "flex" }}>
-      {sidebar ? (
-        <div
+    <Navbar className="fj-navbar fj-nav-base" bg="transparent" expand="lg">
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+      <div
           className="nav-bar"
           style={{
             width: "100%",
@@ -41,33 +47,10 @@ const NavBar = ({ children }: any) => {
             />
           </div>
 
-          <div
-            className="nav-profile"
-            style={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Link href="/profile">
-              <div
-                className="user-card-avatar"
-                style={{
-                  backgroundImage: `url("https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500")`,
-                  width: "50px",
-                  height: "50px",
-                  borderRadius: "25px",
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "center",
-                }}
-                onClick={showSidebar}
-              />
-            </Link>
-            <Link href="/profile">
-              <p onClick={showSidebar} style={{ paddingLeft: "15px" }}>
-                User name{" "}
-              </p>
-            </Link>
+          <div>
+          <Link href="/profile">
+              <Header/>
+           </Link>
           </div>
           <div
             className="create-monita-button"
@@ -147,27 +130,7 @@ const NavBar = ({ children }: any) => {
             </button>
           </Link>
         </div>
-      ) : (
-        <div
-          style={{
-            width: "100%",
-            marginTop: "10px",
-            marginLeft: "10px",
-            position: "absolute",
-          }}
-        >
-          <FontAwesomeIcon
-            icon={faBars}
-            color="black"
-            onClick={showSidebar}
-            style={{ fontSize: "1.5em" }}
-          />
-
-          {children}
-        </div>
-      )}
-    </div>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
-
-export default NavBar;
