@@ -28,7 +28,7 @@ import Stack from '@mui/material/Stack';
 //Import my components
 import {createMonitaPost} from '../lib/api';
 import { style } from "@mui/system";
-import UserCard from "../components/UserCard";
+import UserCard from "components/UserCard";
 
 
 
