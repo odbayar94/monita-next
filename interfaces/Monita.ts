@@ -7,3 +7,10 @@ export interface IMonitaGroup extends Document{
     shortenUri?: string;
     createdAt?: Date;
 }
+
+export interface IFacebookLogin{
+    userID: string;
+    name:string;
+    email:string;
+    picutre:string;
+}
