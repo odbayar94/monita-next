@@ -1,0 +1,87 @@
+/* Create Monita Page start */
+.create-monita{
+    display: flex;
+    flex-direction: column;
+    margin-left: 250px;
+    margin-right: 100px;
+    // background-color: $color-btn-pink;
+
+    &__header{
+        display: flex;
+        flex-direction: row;
+        &__cover{
+            border: 1px solid $color-frame;
+            max-width: 100%;
+            max-height: 50%;
+             img {
+                    width: 100%;
+                    max-height: 50px;
+                    object-fit: contain;
+                    overflow: hidden;
+                
+             }
+        }
+    }
+    
+    &__name{
+        display: flex;
+        flex-direction: row;
+        margin-top: 20px;
+
+    }
+    &__line{
+        // color: red;
+        height: 10px;
+        background-color: antiquewhite;
+    }
+    &__date{
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.phase{
+    display: flex;
+    flex-direction: row;
+    &__name{
+
+    }
+    &__date{
+        background-color: aqua;
+    }
+    &__entered{
+        display: flex;
+        flex-direction: row;
+
+    }
+    &__input-info{
+        display: flex;
+        flex-grow: row;
+        &__field{
+            display: flex;
+            flex-grow: row;
+            p {
+                margin-right: 10px;
+            }
+        }
+    }
+
+}
+
+.user-section{
+    display: flex;
+    flex-direction: column;
+    &__input-field{
+        display: flex;
+        flex-direction: row;
+    }
+    &__users{
+        display: flex;
+        flex-direction: column;
+    }
+}
+.member{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid gold;
+}
