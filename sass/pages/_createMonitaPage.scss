@@ -1,0 +1,179 @@
+.monita_form {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: $color-btn-pink;
+  @include for-phone-only {
+    background-color: $color-frame;
+  }
+}
+
+.navbar {
+  background-color: #203040;
+  a {
+    color: #ffffff;
+    margin-left: 10;
+  }
+}
+.brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.grow {
+  flex-grow: 1;
+}
+.main {
+  min-height: 80vh;
+}
+.footer {
+  margin-top: 10;
+  text-align: center;
+}
+.section {
+  margin-top: 10;
+  margin-bottom: 10;
+}
+
+.navbarButton {
+  color: #ffffff;
+  text-transform: initial;
+}
+.transparentBackgroud {
+  background-color: transparent;
+}
+.error {
+  color: #f04040;
+}
+.fullWidth {
+  width: 100%;
+}
+.reviewForm {
+  max-width: 800;
+  width: 100%;
+}
+.reviewItem {
+  margin-right: 1rem;
+  border-right: 1px #808080 solid;
+  padding-right: 1rem;
+}
+.toolbar {
+  justify-content: space-between;
+}
+.menuButton {
+  padding: 0;
+}
+.mt1 {
+  margin-top: 1rem;
+}
+// search
+
+.searchForm {
+  border: 1px solid #ffffff;
+  background-color: #ffffff;
+  borderradius: 5;
+}
+.searchInput {
+  padding-left: 5;
+  color: #000000;
+  ::placeholder {
+    color: #606060;
+  }
+}
+.iconButton {
+  background-color: #f8c040;
+  padding: 5;
+  border-radius: 0 5px 5px 0;
+  span {
+    color: #000000;
+  }
+}
+.sort {
+  margin-right: 5;
+}
+
+.fullContainer {
+  height: 100vh;
+}
+.mapInputBox {
+  position: absolute;
+  display: flex;
+  left: 0;
+  -right: 0;
+  margin: 10px auto;
+  width: 300;
+  height: 40;
+  input {
+    width: 250;
+  }
+}
+
+.submit_btn {
+  border: "none";
+  width: "80%";
+  margin: "0, auto";
+  height: "50px";
+  border-radius: "15px";
+  background-color: "#E94057";
+}
+
+.email {
+  &_add_section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+  &_field {
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+  }
+  &_error {
+    color: #f44336;
+    font-size: 0.75rem;
+    margin-top: 3px;
+    margin-left: 1rem;
+    text-align: left;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.66;
+    letter-spacing: 0.03333em;
+  }
+}
+
+.title {
+  font-size: 72px;
+  text-align: center;
+  margin: 0 auto;
+  background: linear-gradient(
+    135deg,
+    #5335cf 0%,
+    #de005e 25%,
+    #f66e48 50%,
+    #de005e 75%,
+    #5335cf 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.add_user_btn {
+  border: none;
+  margin: 1rem 1rem 1rem 1rem;
+  width: 10%;
+  height: 50px;
+  border-radius: 15px;
+  background-color: #e94057;
+}
+
+.user_card {
+  display: flex;
+  flex-direction: row;
+
+  button {
+    border-radius: 50%;
+  }
+}
+
+.remove_button {
+  border-radius: 50%;
+}

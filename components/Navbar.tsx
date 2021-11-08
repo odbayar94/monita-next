@@ -13,7 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-export default () => {
+export const NavbarSection = () => {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
 
@@ -37,14 +37,7 @@ export default () => {
               justifyContent: "flex-end",
               padding: "10px",
             }}
-          >
-            <FontAwesomeIcon
-              icon={faTimes}
-              color="black"
-              onClick={showSidebar}
-              style={{ fontSize: "1.5em", marginTop: "10px" }}
-            />
-          </div>
+          ></div>
 
           <div>
             <Link href="/profile">
@@ -60,20 +53,11 @@ export default () => {
             }}
           >
             <Link href="/create-monita">
-              <button
-                style={{
-                  border: "none",
-                  width: "80%",
-                  height: "50px",
-                  borderRadius: "15px",
-                  backgroundColor: "#E94057",
-                }}
-                onClick={showSidebar}
-              >
+              <button className="main__button" onClick={showSidebar}>
                 Create Group
                 <FontAwesomeIcon
                   icon={faPlus}
-                  color="black"
+                  color="white"
                   style={{
                     fontSize: "1em",
                     alignSelf: "center",
@@ -122,3 +106,5 @@ export default () => {
     </Navbar>
   );
 };
+
+export default NavbarSection;
