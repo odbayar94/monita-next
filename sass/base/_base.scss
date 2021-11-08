@@ -12,33 +12,3 @@
     color: $txt_color;
   }
 }
-
-.layout {
-  &__footer {
-    margin-top: 10;
-    text-align: center;
-  }
-  &__header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &__menu-button {
-    padding: 0;
-  }
-
-  &__navbar {
-    background-color: $header_color;
-  }
-
-  &__navbar-button {
-    color: $txt_color;
-    text-transform: initial;
-  }
-
-  &__toolbar {
-    justify-content: space-between;
-  }
-}

@@ -46,7 +46,9 @@ body {
 }
 
 .title {
-  font-size: 28px;
+  font-size: 72px;
+  text-align: center;
+  margin: 0 auto;
   background: linear-gradient(
     135deg,
     #5335cf 0%,
@@ -55,9 +57,8 @@ body {
     #de005e 75%,
     #5335cf 100%
   );
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
 }
 
 .title a:hover,
