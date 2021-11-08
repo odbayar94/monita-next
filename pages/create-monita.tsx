@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import validator from "validator";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 import { useRouter } from "next/router";
 //import CSS
 import "react-dropdown/style.css";
@@ -13,7 +15,7 @@ import { List, ListItem, TextField, Button } from "@material-ui/core";
 //Date
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DatePicker from "@mui/lab/DatePicker";
+// import DatePicker from "@mui/lab/DatePicker";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import Stack from "@mui/material/Stack";
 
@@ -57,91 +59,27 @@ export default function CreateMonitaGroup() {
     formState: { errors },
   } = useForm();
 
-  const [value, setDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [emailError, setEmailError] = useState("");
+  const [date, setDate] = useState(new Date());
 
-  const submitHandler = async ({ name }: any) => {
+  const submitHandler = async ({ name, description }: any) => {
     closeSnackbar();
-    if (selectedUsers.length !== 0) {
-      const users = selectedUsers.map((el) => ({
-        email: el,
-        name: null,
-        imageUrl: null,
-      }));
 
-      const data = { name, description: "", endDate, selectedUsers: users };
+    const data = { name, description, startDate: date };
+    console.log(data);
 
-      const groupId = await createMonitaPost(data);
-      if (groupId) {
-        router.push(`/monita-groups/${groupId}`);
-      }
-    } else {
-      enqueueSnackbar("Монитад оролцох хүний имэйл хаяг оруулна уу", {
-        variant: "error",
-      });
-    }
+    // const groupId = await createMonitaPost(data);
+    // if (groupId) {
+    //   router.push(`/monita-groups/${groupId}`);
+    // }
+
+    // enqueueSnackbar("Монитад оролцох хүний имэйл хаяг оруулна уу", {
+    //   variant: "error",
+    // });
   };
 
-  // const [selectedUsers, setSelectedUsers] = useState<Array<any>>([]);
-  const [selectedUsers, setSelectedUsers] = useState([]);
-
-  // const [selectedUsers, setSelectedUsers] = useState(() => new Set());
-
-  const [infoMessage, setInfoMessage] = useState("");
-  const [selectUser, setSelectUser] = useState("");
-  const [state, setState] = useState({
-    name: "",
-    description: "",
-  });
-
-  // const defaultImgUrl = "https://www.smartdatajob.com/images/joomlart/demo/default.jpg";
-  // const options = ["1", "2", "3"];
-  // const defaultOption = options[0];
-
-  //Songoson hereglegchiig custom data uusgej yvav
-  // var selectedUser = [
-  //     {userId: 1, name:"Аззаяа", photo:"https://randomuser.me/api/portraits/thumb/women/9.jpg"},
-  //     {userId: 2, name:"Угтахбаяр", photo:"https://randomuser.me/api/portraits/thumb/men/72.jpg"},
-  //     {usreId: 3, name:"Одбаяр", photo:"https://randomuser.me/api/portraits/thumb/men/71.jpg"}
-  //     ]
-
-  function handleChange(e: any) {
-    setState({ ...state, [e.target.name]: e.target.value });
-  }
-
-  function userHandleChange(e: any) {
-    setSelectUser(e.target.value);
-    setEmailError("");
-  }
-
-  function addUser() {
-    if (validator.isEmail(selectUser)) {
-      const unique = selectedUsers.indexOf(selectUser);
-      if (unique === -1) {
-        // setSelectedUsers([...selectedUsers, {email: selectUser, name: null, imageUrl: null}]);
-        setSelectedUsers([...selectedUsers, selectUser]);
-        setSelectUser("");
-        setEmailError("");
-      } else {
-        setEmailError("Имэйл давхцаж байна");
-      }
-    } else if (!selectUser) {
-      setEmailError("Имэйл хаяг оруулна уу");
-    } else {
-      setEmailError("Зөв имэйл хаяг оруулна уу");
-    }
-  }
-
-  const removeUserHandler = (item: Object) => {
-    var array = [...selectedUsers];
-    var index = array.indexOf(item);
-    if (index !== -1) {
-      array.splice(index, 1);
-      setSelectedUsers(array);
-    }
+  const handleDateChange = (date: any) => {
+    setDate(date);
   };
-
   return (
     <form onSubmit={handleSubmit(submitHandler)} className="monita_form">
       <h3 className="title">Монита үүсгэх</h3>
@@ -176,80 +114,42 @@ export default function CreateMonitaGroup() {
           ></Controller>
         </ListItem>
         <ListItem>
-          {/* <LocalizationProvider dateAdapter={AdapterDateFns">
-                <Controller
-                name="endDate"
-                control={control}
-                defaultValue={new Date()}
-                render={({ field: { ref, ...rest } }) => (
-                <DesktopDatePicker
-                    label="Бэлэг өгөх өдөр"
-                    value={endDate}
-                    minDate={new Date('2017-01-01')}
-                    onChange={(newValue) => {
-                        setEndDate(newValue);
-                     }}
-                    renderInput={(params) => <TextField {...params} />}
-        />
-        )}
-              />
-         </LocalizationProvider> */}
-        </ListItem>
-        <ListItem>
-          <div className="email_add_section">
-            <div className="email_field">
-              <div>
-                <TextField
-                  variant="outlined"
-                  value={selectUser}
-                  onChange={userHandleChange}
-                  fullWidth
-                  id="email"
-                  label="Имэйл хаяг"
-                ></TextField>
-              </div>
-              {emailError && <div className="email_error">{emailError}</div>}
-            </div>
-            <div>
-              <Button
-                variant="contained"
-                onClick={addUser}
-                color="secondary"
-                style={{
-                  border: "none",
-                  margin: "0.2rem 1rem 1rem 1rem",
-                  width: "10%",
-                  height: "50px",
-                  fontSize: "2rem",
-                  borderRadius: "15px",
-                }}
-              >
-                +
-              </Button>
-            </div>
-          </div>
+          <Controller
+            name="description"
+            control={control}
+            defaultValue=""
+            rules={{
+              required: true,
+              minLength: 2,
+            }}
+            render={({ field }) => (
+              <TextField
+                variant="outlined"
+                fullWidth
+                id="description"
+                label="Дэлгэрэнгүй тайлбар"
+                inputProps={{ type: "description" }}
+                error={Boolean(errors.description)}
+                helperText={
+                  errors.description
+                    ? errors.description.type === "minLength"
+                      ? "Дэлгэрэнгүй урт 1 тэмдэгтээс их байна"
+                      : "Дэлгэрэнгүй тайлбар нэр оруулна уу"
+                    : ""
+                }
+                {...field}
+              ></TextField>
+            )}
+          ></Controller>
         </ListItem>
 
         <ListItem>
-          <List style={{ fontSize: "1rem", width: "85%" }}>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              {selectedUsers.map((item, index) => {
-                return (
-                  <div key={index} className="user_card">
-                    <UserCard email={item} />
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      className="remove_button"
-                      onClick={() => removeUserHandler(item)}
-                    >
-                      x
-                    </Button>
-                  </div>
-                );
-              })}
-            </div>
-          </List>
+          <DatePicker
+            selected={date}
+            onChange={handleDateChange}
+            showTimeSelect
+            dateFormat="Pp"
+          />
         </ListItem>
 
         <ListItem>

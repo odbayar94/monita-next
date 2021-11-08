@@ -2,9 +2,9 @@
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  background-color: $color-btn-pink;
+  background-color: none;
   @include for-phone-only {
-    background-color: $color-frame;
+    background-color: none;
   }
 }
 
