@@ -3,7 +3,7 @@ import Navbar from "components/Navbar";
 
 import React from "react";
 
-export default ({ children }) => {
+export const LayOut = ({ children }) => {
   return (
     <Container>
       <Navbar />
@@ -11,3 +11,5 @@ export default ({ children }) => {
     </Container>
   );
 };
+
+export default LayOut;
