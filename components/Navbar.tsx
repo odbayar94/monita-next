@@ -1,5 +1,6 @@
 import { Navbar, Nav } from "react-bootstrap";
 import Header from "components/Header";
+import { signIn, signOut, useSession } from "next-auth/client";
 import React, { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,9 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-
 export default () => {
-
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
 
@@ -22,7 +21,7 @@ export default () => {
     <Navbar className="fj-navbar fj-nav-base" bg="transparent" expand="lg">
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-      <div
+        <div
           className="nav-bar"
           style={{
             width: "100%",
@@ -48,9 +47,9 @@ export default () => {
           </div>
 
           <div>
-          <Link href="/profile">
-              <Header/>
-           </Link>
+            <Link href="/profile">
+              <Header />
+            </Link>
           </div>
           <div
             className="create-monita-button"
@@ -109,26 +108,15 @@ export default () => {
               </Link>
             </li>
           </div>
-          <Link href="/api/auth/logout">
-            <button
-              style={{
-                border: "none",
-                width: "80%",
-                height: "50px",
-                borderRadius: "15px",
-                backgroundColor: "pink",
-                position: "absolute",
-                bottom: "20px",
-                marginLeft: "auto",
-                marginRight: "auto",
-                left: 0,
-                right: 0,
-              }}
-              onClick={showSidebar}
-            >
-              Log out
-            </button>
-          </Link>
+          <a
+            href={`/api/auth/signout`}
+            onClick={(e) => {
+              e.preventDefault();
+              signOut();
+            }}
+          >
+            Sign out1
+          </a>
         </div>
       </Navbar.Collapse>
     </Navbar>
