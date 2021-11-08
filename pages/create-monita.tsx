@@ -47,17 +47,6 @@ interface ISelectedUser {
   imgUrl?: string;
 }
 
-const Header = () => {
-  return (
-    <div className="create_monita__header">
-      <img
-        src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=jess-bailey-f94JPVrDbnY-unsplash.jpg"
-        alt=""
-      />
-    </div>
-  );
-};
-
 const SelectedUser = ({ email }: ISelectedUser) => {
   return (
     <div className="member">

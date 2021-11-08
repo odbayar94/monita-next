@@ -7,6 +7,7 @@ import styles from "./header.module.css";
 // rendering, and avoids any flash incorrect content on initial page load.
 export default function Header() {
   const [session, loading] = useSession();
+  // const { data: session, status } = useSession();
 
   return (
     <header>
@@ -33,6 +34,7 @@ export default function Header() {
               </a>
             </>
           )}
+
           {session && (
             <a href={`/profile`}>
               <div className={styles.header}>
