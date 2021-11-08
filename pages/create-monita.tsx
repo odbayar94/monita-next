@@ -148,7 +148,8 @@ export default function CreateMonitaGroup() {
             selected={date}
             onChange={handleDateChange}
             showTimeSelect
-            dateFormat="Pp"
+            // dateFormat="Pp"
+            dateFormat="MMMM d, yyyy h:mm aa"
           />
         </ListItem>
 
