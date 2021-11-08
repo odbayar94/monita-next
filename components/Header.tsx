@@ -7,6 +7,7 @@ import styles from "./header.module.css";
 // rendering, and avoids any flash incorrect content on initial page load.
 export default function Header() {
   const [session, loading] = useSession();
+  // const { data: session, status } = useSession();
 
   return (
     <header>
@@ -21,9 +22,6 @@ export default function Header() {
         >
           {!session && (
             <>
-              <span className={styles.notSignedInText}>
-                You are not signed in
-              </span>
               <a
                 href={`/api/auth/signin`}
                 className={styles.buttonPrimary}
@@ -32,35 +30,40 @@ export default function Header() {
                   signIn();
                 }}
               >
-                Sign in
+                Нэвтрэх
               </a>
             </>
           )}
+
           {session && (
             <a href={`/profile`}>
-              <>
+              <div className={styles.header}>
                 {session.user.image && (
-                  <span
-                    style={{ backgroundImage: `url(${session.user.image})` }}
-                    className={styles.avatar}
-                  />
+                  <div>
+                    <span
+                      style={{ backgroundImage: `url(${session.user.image})` }}
+                      className={styles.avatar}
+                    />
+                  </div>
                 )}
-                <span className={styles.signedInText}>
-                  <small>Signed in as</small>
-                  <br />
-                  <strong>{session.user.name}</strong>
-                </span>
-                <a
-                  href={`/api/auth/signout`}
-                  className={styles.button}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    signOut();
-                  }}
-                >
-                  Sign out
-                </a>
-              </>
+                <div>
+                  <span className={styles.signed}>
+                    <strong>{session.user.name}</strong>
+                  </span>
+                </div>
+                <div>
+                  <a
+                    href={`/api/auth/signout`}
+                    className={styles.button}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      signOut();
+                    }}
+                  >
+                    Гарах
+                  </a>
+                </div>
+              </div>
             </a>
           )}
         </p>

@@ -1,0 +1,44 @@
+.layout {
+  &__footer {
+    margin-top: 10;
+    text-align: center;
+  }
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__menu-button {
+    padding: 0;
+  }
+
+  &__navbar {
+    background-color: $header_color;
+  }
+
+  &__navbar-button {
+    color: $txt_color;
+    text-transform: initial;
+  }
+
+  &__toolbar {
+    justify-content: space-between;
+  }
+
+  &__button {
+    padding: 0.4rem 1rem;
+    border: none;
+    width: 100%;
+    border-radius: 15px;
+    background-color: $btn_color;
+    color: $txt_color;
+  }
+  &__header-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 import Head from "next/head";
-import styles from "../styles/sass/profile.module.scss";
 import {
   faCoffee,
   faHeart,
@@ -12,8 +11,6 @@ import Avatar from "../components/Avatar";
 import { Product } from "../components/Product";
 
 const Profile: NextPage = ({ products }: any) => {
-  
-
   const [isSelected, setIsSelected] = useState(0);
   const [wishLists, setWishLists] = useState([
     {
@@ -46,22 +43,20 @@ const Profile: NextPage = ({ products }: any) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       <Head>
         <title>Profile</title>
       </Head>
 
-      <div className={styles.wrapper}>
-        <div className={styles.wrapper_cover}></div>
-        <div className={styles.wrapper_content}>
-          <div className={styles.wrapper_content_avatar}>
+      <div className="wrapper">
+        <div className="wrapper_cover"></div>
+        <div className="wrapper_content">
+          <div className="wrapper_content_avatar">
             <Avatar url="https://images.unsplash.com/photo-1557862921-37829c790f19?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2371&q=80" />
           </div>
-          <div className={styles.wrapper_content_buttons}>
+          <div className="wrapper_content_buttons">
             <button
-              className={
-                isSelected === 0 ? styles.isSelected : styles.isNotSelected
-              }
+              className={isSelected === 0 ? "isSelected" : "isNotSelected"}
               onClick={() => select(0)}
             >
               <FontAwesomeIcon
@@ -70,9 +65,7 @@ const Profile: NextPage = ({ products }: any) => {
               />
             </button>
             <button
-              className={
-                isSelected === 1 ? styles.isSelected : styles.isNotSelected
-              }
+              className={isSelected === 1 ? "isSelected" : "isNotSelected"}
               onClick={() => select(1)}
             >
               <FontAwesomeIcon
@@ -81,9 +74,7 @@ const Profile: NextPage = ({ products }: any) => {
               />
             </button>
             <button
-              className={
-                isSelected === 2 ? styles.isSelected : styles.isNotSelected
-              }
+              className={isSelected === 2 ? "isSelected" : "isNotSelected"}
               onClick={() => select(2)}
             >
               <FontAwesomeIcon
@@ -92,7 +83,7 @@ const Profile: NextPage = ({ products }: any) => {
               />
             </button>
           </div>
-          <div className={styles.wrapper_content_info}>
+          <div className="wrapper_content_info">
             <div>
               <h4>Номин-Эрдэнэ</h4>
               <h4>Монита</h4>
@@ -104,7 +95,7 @@ const Profile: NextPage = ({ products }: any) => {
         </div>
       </div>
 
-      <div className={styles.cards}>
+      <div className="cards">
         {isSelected === 0 && <div>About</div>}
         {isSelected === 1 && (
           <Product

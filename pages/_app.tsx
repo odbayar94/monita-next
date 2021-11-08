@@ -1,17 +1,14 @@
-import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../sass/main.scss";
 
 import type { AppProps } from "next/app";
-import { SnackbarProvider } from 'notistack';
-import { Provider } from 'react-redux';
+import { SnackbarProvider } from "notistack";
+import { Provider } from "react-redux";
 import { useRouter } from "next/router";
 
-//My import 
-import store from 'redux/store';
-// import { Layout } from "../components/Layout";
+//My import
+import store from "redux/store";
 import Layout from "components/Layout";
-
-
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -19,16 +16,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
-    <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
-      {showSidebar ? (
-        <Component {...pageProps} />
-      ) : (
+      <SnackbarProvider
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
         <Layout>
-         
           <Component {...pageProps} />
         </Layout>
-      )}
-    </SnackbarProvider>
+      </SnackbarProvider>
     </Provider>
   );
 }
