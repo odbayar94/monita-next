@@ -15,7 +15,7 @@ export default function Header() {
         <style>{`.nojs-show { opacity: 1; top: 0; }`}</style>
       </noscript>
       <div className={styles.signedInStatus}>
-        <p
+        <div
           className={`nojs-show ${
             !session && loading ? styles.loading : styles.loaded
           }`}
@@ -36,16 +36,16 @@ export default function Header() {
           )}
 
           {session && (
-            <a href={`/profile`}>
+            <Link href={`/profile`}>
               <div className={styles.header}>
-                {session.user.image && (
-                  <div>
+                <div>
+                  {session.user.image && (
                     <span
                       style={{ backgroundImage: `url(${session.user.image})` }}
                       className={styles.avatar}
                     />
-                  </div>
-                )}
+                  )}
+                </div>
                 <div>
                   <span className={styles.signed}>
                     <strong>{session.user.name}</strong>
@@ -64,9 +64,9 @@ export default function Header() {
                   </a>
                 </div>
               </div>
-            </a>
+            </Link>
           )}
-        </p>
+        </div>
       </div>
     </header>
   );

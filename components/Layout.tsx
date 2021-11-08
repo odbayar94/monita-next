@@ -66,7 +66,9 @@ export default function Layout({ title, description, children }) {
             <List>
               <ListItem className="layout__header-section">
                 <div>
-                  <Typography className="title">Үндсэн цэс</Typography>
+                  <Typography className="title" component={"span"}>
+                    Үндсэн цэс
+                  </Typography>
                 </div>
                 <div>
                   <IconButton aria-label="close" onClick={sidebarCloseHandler}>
@@ -99,7 +101,7 @@ export default function Layout({ title, description, children }) {
       </AppBar>
       <Container>{children}</Container>
       <footer className="layout__footer">
-        <Typography>All rights reserved.</Typography>
+        <Typography component={"span"}>All rights reserved.</Typography>
       </footer>
     </div>
   );
