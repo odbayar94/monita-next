@@ -1,31 +1,20 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
-
+import { useSnackbar } from "notistack";
+import { Controller, useForm } from "react-hook-form";
+import { List, ListItem, TextField, Button } from "@material-ui/core";
 import "react-datepicker/dist/react-datepicker.css";
 import { useRouter } from "next/router";
+
 //import CSS
 import "react-dropdown/style.css";
 import "react-datepicker/dist/react-datepicker.css";
 
-//Eddited
-import { useSnackbar } from "notistack";
-import { Controller, useForm } from "react-hook-form";
-import { List, ListItem, TextField, Button } from "@material-ui/core";
-
-//Date
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-// import DatePicker from "@mui/lab/DatePicker";
-import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
-import Stack from "@mui/material/Stack";
-
 //Import my components
 import { createMonitaPost } from "../lib/api";
 import { style } from "@mui/system";
-import UserCard from "components/UserCard";
 
 //Types and Interfaces
-
 type Post = {
   author: string;
   content: string;
@@ -64,17 +53,20 @@ export default function CreateMonitaGroup() {
   const submitHandler = async ({ name, description }: any) => {
     closeSnackbar();
 
-    const data = { name, description, startDate: date };
-    console.log(data);
+    const data = { name, description, endDate: date };
 
-    // const groupId = await createMonitaPost(data);
-    // if (groupId) {
-    //   router.push(`/monita-groups/${groupId}`);
-    // }
+    const groupId = await createMonitaPost(data);
 
-    // enqueueSnackbar("Монитад оролцох хүний имэйл хаяг оруулна уу", {
-    //   variant: "error",
-    // });
+    if (groupId) {
+      enqueueSnackbar("Монита групп амжилттай үүслээ", {
+        variant: "success",
+      });
+      router.push(`/monita-groups/${groupId}`);
+    } else {
+      enqueueSnackbar("Монита үүсгэхэд алдаа гарлаа", {
+        variant: "error",
+      });
+    }
   };
 
   const handleDateChange = (date: any) => {

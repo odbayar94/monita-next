@@ -1,13 +1,28 @@
 import Link from "next/link";
+import React, { useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/client";
 import styles from "./header.module.css";
+import { useAppSelector, useAppDispatch } from "redux/hooks";
+import { loginUser, logOut } from "redux/user/userActions";
 
 // The approach used in this component shows how to build a sign in and sign out
 // component that works on pages which support both client and server side
 // rendering, and avoids any flash incorrect content on initial page load.
 export default function Header() {
   const [session, loading] = useSession();
-  // const { data: session, status } = useSession();
+
+  const userInfo = useAppSelector((state) => state.userReducer);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (session) {
+      dispatch(loginUser(session.user) as any);
+    }
+  }, [session]);
+
+  const logout = () => {
+    dispatch(logOut() as any);
+  };
 
   return (
     <header>
@@ -58,6 +73,8 @@ export default function Header() {
                     onClick={(e) => {
                       e.preventDefault();
                       signOut();
+                      console.log("name: " + userInfo.name);
+                      logout();
                     }}
                   >
                     Гарах

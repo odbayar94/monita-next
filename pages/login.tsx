@@ -3,9 +3,10 @@ import Head from "next/head";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useAppSelector, useAppDispatch } from "redux/hooks";
 
 const Login: NextPage = () => {
-  //Hello
+  const userInfo = useAppSelector((state) => state.userReducer);
 
   return (
     <div className="login__container}">

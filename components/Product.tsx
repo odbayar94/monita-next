@@ -29,7 +29,6 @@ export const Product = ({ title, products, addWish, remove }: IProduct) => {
 
 const Content = ({ title, product, addWish, remove }: any) => {
   const add = () => {
-    console.log("C:", product);
     addWish(product);
     remove(product);
   };

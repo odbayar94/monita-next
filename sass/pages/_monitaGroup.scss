@@ -1,0 +1,12 @@
+.group {
+  &__creator {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+  &__description {
+    text-align: center;
+    font-style: oblique;
+  }
+}
