@@ -85,9 +85,8 @@ export default function CreateMonitaGroup() {
     setDate(date);
   };
 
-  useEffect(() => {
-    console.log("username: " + userInfo.name);
-  }, []);
+  // useEffect(() => {
+  // }, []);
   return (
     <form onSubmit={handleSubmit(submitHandler)} className="monita_form">
       <h3 className="title">Монита үүсгэх</h3>

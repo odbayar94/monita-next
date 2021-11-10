@@ -2,7 +2,7 @@ import thunk from "redux-thunk";
 import { combineReducers, createStore, applyMiddleware } from "redux";
 
 import userReducer from "./user/userReducer";
-import myGroupReducer from "./myGroup/myGroupReducer";
+import groupReducer from "./group/groupReducer";
 
 export const middlewares = [thunk];
 if (process.env.NODE_ENV === "development") {
@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === "development") {
 
 const rootReducer = combineReducers({
   userReducer,
-  myGroupReducer,
+  groupReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(...middlewares));

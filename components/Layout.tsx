@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import Head from "next/head";
 import NextLink from "next/link";
 import Header from "components/Header";
 import { useAppSelector, useAppDispatch } from "redux/hooks";
 import { signIn, signOut, useSession } from "next-auth/client";
+import { Dispatch } from "redux";
 
-import {
-  faHome,
-  faGift,
-  faTimes,
-  faBars,
-  faPlus,
-} from "@fortawesome/free-solid-svg-icons";
+import { group } from "redux/group/groupActions";
+
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -31,11 +28,14 @@ import MenuIcon from "@material-ui/icons/Menu";
 import CancelIcon from "@material-ui/icons/Cancel";
 
 export default function Layout({ children }) {
-  const [sidbarVisible, setSidebarVisible] = useState(false);
-  const [name, setName] = useState("");
-  const userInfo = useAppSelector((state) => state.userReducer);
-  const myGroup = useAppSelector((state) => state.myGroupReducer);
+  const dispatch = useAppDispatch();
 
+  const [sidbarVisible, setSidebarVisible] = useState(false);
+  // const [groups, setGroups] = useState([]);
+  const userInfo = useAppSelector((state) => state.userReducer);
+  const myGroupInfo = useAppSelector((state) => state.groupReducer);
+
+  // var groups: Array<Object> = [];
   const sidebarOpenHandler = () => {
     setSidebarVisible(true);
   };
@@ -43,10 +43,6 @@ export default function Layout({ children }) {
   const sidebarCloseHandler = () => {
     setSidebarVisible(false);
   };
-
-  useEffect(() => {
-    setName(userInfo.name);
-  }, [userInfo]);
 
   return (
     <div className="basic">
@@ -98,6 +94,28 @@ export default function Layout({ children }) {
                     </button>
                   </ListItem>
                 </NextLink>
+                <ListItem className="layout__my-monita">
+                  <Typography>Миний үүсгэсэн монита</Typography>
+                  {/* {myGroupInfo.isLoaded ? <div>true</div> : <div>false</div>} */}
+                  {myGroupInfo.isLoaded ? (
+                    <div className="layout__my-monita__list">
+                      {myGroupInfo.groups.map((el: any, index: any) => (
+                        <div
+                          key={index}
+                          className="layout__my-monita__list-hover"
+                        >
+                          <NextLink href={`/monita-groups/${el._id}`} passHref>
+                            <Typography component={"span"}>
+                              {el.name}
+                            </Typography>
+                          </NextLink>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
+                </ListItem>
               </List>
             </Drawer>
             <div>

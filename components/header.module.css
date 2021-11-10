@@ -45,8 +45,11 @@
   text-decoration: none;
   margin-left: 15px;
 }
-
+.username {
+  margin-right: 20px;
+}
 .header {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -85,6 +88,10 @@
   color: #fff;
   text-decoration: none;
   padding: 0.7rem 1.4rem;
+}
+.button:hover {
+  box-shadow: inset 0 0 5rem rgba(233, 59, 59, 0.904);
+  color: #fff;
 }
 
 .buttonPrimary:hover {

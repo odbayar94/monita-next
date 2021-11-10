@@ -37,4 +37,18 @@
     align-items: center;
     justify-content: space-between;
   }
+  &__my-monita {
+    display: flex;
+    flex-direction: column;
+    &__list {
+      display: flex;
+      flex-direction: column;
+      &-hover {
+        cursor: pointer;
+        &:hover {
+          background-color: gray;
+        }
+      }
+    }
+  }
 }

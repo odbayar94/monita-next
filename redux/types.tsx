@@ -6,8 +6,9 @@ export const userTypes = {
   errorMessage: "facebook-р нэвтрэхэд алдаа гарлаа",
 };
 
-export const myGroupTypes = {
+export const groupTypes = {
   LOAD_START: "LOAD_START",
   LOAD_SUCCESS: "LOAD_SUCCESS",
   LOAD_FAILURE: "LOAD_FAILURE",
+  STOP: "STOP",
 };

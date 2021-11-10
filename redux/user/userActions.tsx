@@ -13,13 +13,11 @@ import { userTypes } from "redux/types";
 // }
 // export const loginUser = (data: any) => async (dispatch: Dispatch) => {
 export const loginUser = (data: any) => {
-  console.log("logged i1n: " + data.name);
-
   return {
     type: userTypes.SIGN_IN_SUCCESS,
     userId: "",
     name: data.name,
-    email: data.emil,
+    email: data.email,
     image: data.image,
   };
 };
