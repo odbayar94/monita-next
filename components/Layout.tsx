@@ -34,8 +34,10 @@ export default function Layout({ children }) {
   const [sidbarVisible, setSidebarVisible] = useState(false);
   // const [groups, setGroups] = useState([]);
   const userInfo = useAppSelector((state) => state.userReducer);
-  const myGroupInfo = useAppSelector((state: RootState) => state.groupReducer);
-  const data: any = myGroupInfo;
+  const myGroupInfo: any = useAppSelector(
+    (state: RootState) => state.groupReducer
+  );
+  // const myGroupInfo: any = myGroupInfo;
   // var groups: Array<Object> = [];
   const sidebarOpenHandler = () => {
     setSidebarVisible(true);
@@ -98,9 +100,9 @@ export default function Layout({ children }) {
                 <ListItem className="layout__my-monita">
                   <Typography>Миний үүсгэсэн монита</Typography>
                   {/* {myGroupInfo.isLoaded ? <div>true</div> : <div>false</div>} */}
-                  {data.isLoaded ? (
+                  {myGroupInfo.isLoaded ? (
                     <div className="layout__my-monita__list">
-                      {data.groups.map((el: any, index: any) => (
+                      {myGroupInfo.groups.map((el: any, index: any) => (
                         <div
                           key={index}
                           className="layout__my-monita__list-hover"
