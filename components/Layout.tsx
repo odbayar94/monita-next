@@ -34,6 +34,7 @@ export default function Layout({ children }) {
   const [sidbarVisible, setSidebarVisible] = useState(false);
   const [name, setName] = useState("");
   const userInfo = useAppSelector((state) => state.userReducer);
+  const myGroup = useAppSelector((state) => state.myGroupReducer);
 
   const sidebarOpenHandler = () => {
     setSidebarVisible(true);

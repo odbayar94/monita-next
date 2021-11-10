@@ -1,4 +1,4 @@
-import { userTypes } from "redux/types";
+import { myGroupTypes } from "redux/types";
 import Cookies from "js-cookie";
 
 export const INITIAL_STATE = {
@@ -7,7 +7,7 @@ export const INITIAL_STATE = {
 
 const myGroupReducer = (state = INITIAL_STATE, action: any) => {
   switch (action.type) {
-    case userTypes.SIGN_IN_SUCCESS:
+    case myGroupTypes.LOAD_START:
       return {
         ...state,
         isLoading: false,
@@ -17,7 +17,9 @@ const myGroupReducer = (state = INITIAL_STATE, action: any) => {
         image: action.image,
         isLoggedIn: true,
       };
-    case userTypes.LOGOUT:
+    case myGroupTypes.LOAD_SUCCESS:
+      return { ...state, INITIAL_STATE };
+    case myGroupTypes.LOAD_FAILURE:
       return { ...state, INITIAL_STATE };
     default:
       return state;
