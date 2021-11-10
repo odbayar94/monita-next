@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import { useSnackbar } from "notistack";
 import { Controller, useForm } from "react-hook-form";
 import { List, ListItem, TextField, Button } from "@material-ui/core";
+import { useAppSelector, useAppDispatch } from "redux/hooks";
 import "react-datepicker/dist/react-datepicker.css";
 import { useRouter } from "next/router";
 
@@ -40,6 +41,8 @@ const SelectedUser = ({ email }: ISelectedUser) => {
 };
 
 export default function CreateMonitaGroup() {
+  const userInfo = useAppSelector((state) => state.userReducer);
+
   const router = useRouter();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const {
@@ -53,7 +56,16 @@ export default function CreateMonitaGroup() {
   const submitHandler = async ({ name, description }: any) => {
     closeSnackbar();
 
-    const data = { name, description, endDate: date };
+    const data = {
+      createdUser: {
+        name: userInfo.name,
+        email: userInfo.email,
+        image: userInfo.image,
+      },
+      name,
+      description,
+      endDate: date,
+    };
 
     const groupId = await createMonitaPost(data);
 
@@ -72,6 +84,10 @@ export default function CreateMonitaGroup() {
   const handleDateChange = (date: any) => {
     setDate(date);
   };
+
+  useEffect(() => {
+    console.log("username: " + userInfo.name);
+  }, []);
   return (
     <form onSubmit={handleSubmit(submitHandler)} className="monita_form">
       <h3 className="title">Монита үүсгэх</h3>
@@ -147,6 +163,7 @@ export default function CreateMonitaGroup() {
 
         <ListItem>
           <Button
+            disabled={!userInfo.name}
             className="main__button"
             variant="contained"
             type="submit"

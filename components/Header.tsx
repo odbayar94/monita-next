@@ -18,7 +18,7 @@ export default function Header() {
     if (session) {
       dispatch(loginUser(session.user) as any);
     }
-  }, [session]);
+  }, []);
 
   const logout = () => {
     dispatch(logOut() as any);

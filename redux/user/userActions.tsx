@@ -2,7 +2,7 @@ import { Dispatch } from "redux";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-import userTypes from "./userTypes";
+import { userTypes } from "redux/types";
 
 // export const loginUserStart = () => async (dispatch: Dispatch)=> {
 

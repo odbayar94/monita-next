@@ -17,7 +17,7 @@ export default function MonitaScreen(props: any) {
         <p className="group__description">{monitaGroup.description}</p>
       </div>
       <div className="group__creator">
-        <p>Ugtakhbayar created this group</p>
+        <p>{monitaGroup.createdUser.name}</p>
       </div>
       <div>
         <div

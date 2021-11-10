@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useAppSelector, useAppDispatch } from "redux/hooks";
+import LoginInfo from "components/Login";
 
 const Login: NextPage = () => {
   const userInfo = useAppSelector((state) => state.userReducer);
@@ -14,6 +15,7 @@ const Login: NextPage = () => {
         <img src="/logo.png" />
         <h1 className="login__title">WishList Web Application </h1>
       </main>
+
       <footer className="footer">Powered by Wish Team</footer>
     </div>
   );

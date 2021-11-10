@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import NextLink from "next/link";
 import Header from "components/Header";
+import { useAppSelector, useAppDispatch } from "redux/hooks";
 import { signIn, signOut, useSession } from "next-auth/client";
 
 import {
@@ -28,10 +29,11 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import CancelIcon from "@material-ui/icons/Cancel";
-import { useState } from "react";
 
 export default function Layout({ children }) {
   const [sidbarVisible, setSidebarVisible] = useState(false);
+  const [name, setName] = useState("");
+  const userInfo = useAppSelector((state) => state.userReducer);
 
   const sidebarOpenHandler = () => {
     setSidebarVisible(true);
@@ -40,6 +42,10 @@ export default function Layout({ children }) {
   const sidebarCloseHandler = () => {
     setSidebarVisible(false);
   };
+
+  useEffect(() => {
+    setName(userInfo.name);
+  }, [userInfo]);
 
   return (
     <div className="basic">
