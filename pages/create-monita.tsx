@@ -87,7 +87,7 @@ export default function CreateMonitaGroup() {
 
   useEffect(() => {
     console.log("username: " + userInfo.name);
-  }, [userInfo]);
+  }, []);
   return (
     <form onSubmit={handleSubmit(submitHandler)} className="monita_form">
       <h3 className="title">Монита үүсгэх</h3>
@@ -163,6 +163,7 @@ export default function CreateMonitaGroup() {
 
         <ListItem>
           <Button
+            disabled={!userInfo.name}
             className="main__button"
             variant="contained"
             type="submit"
