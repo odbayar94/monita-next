@@ -4,7 +4,6 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useAppSelector, useAppDispatch } from "redux/hooks";
-import LoginInfo from "components/Login";
 
 const Login: NextPage = () => {
   const userInfo = useAppSelector((state) => state.userReducer);

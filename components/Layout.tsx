@@ -5,7 +5,6 @@ import Header from "components/Header";
 import { useAppSelector, useAppDispatch } from "redux/hooks";
 import { signIn, signOut, useSession } from "next-auth/client";
 import { Dispatch } from "redux";
-
 import { group } from "redux/group/groupActions";
 
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -26,6 +25,8 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import CancelIcon from "@material-ui/icons/Cancel";
+import { IGroupState, IGroup } from "interfaces";
+import { RootState } from "redux/store";
 
 export default function Layout({ children }) {
   const dispatch = useAppDispatch();
@@ -33,8 +34,8 @@ export default function Layout({ children }) {
   const [sidbarVisible, setSidebarVisible] = useState(false);
   // const [groups, setGroups] = useState([]);
   const userInfo = useAppSelector((state) => state.userReducer);
-  const myGroupInfo = useAppSelector((state) => state.groupReducer);
-
+  const myGroupInfo = useAppSelector((state: RootState) => state.groupReducer);
+  const data: any = myGroupInfo;
   // var groups: Array<Object> = [];
   const sidebarOpenHandler = () => {
     setSidebarVisible(true);
@@ -97,9 +98,9 @@ export default function Layout({ children }) {
                 <ListItem className="layout__my-monita">
                   <Typography>Миний үүсгэсэн монита</Typography>
                   {/* {myGroupInfo.isLoaded ? <div>true</div> : <div>false</div>} */}
-                  {myGroupInfo.isLoaded ? (
+                  {data.isLoaded ? (
                     <div className="layout__my-monita__list">
-                      {myGroupInfo.groups.map((el: any, index: any) => (
+                      {data.groups.map((el: any, index: any) => (
                         <div
                           key={index}
                           className="layout__my-monita__list-hover"

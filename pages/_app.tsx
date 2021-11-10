@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import { useRouter } from "next/router";
 import { useAppSelector, useAppDispatch } from "redux/hooks";
 //My import
-import Login from "components/Login";
 import store from "redux/store";
 import Layout from "components/Layout";
 

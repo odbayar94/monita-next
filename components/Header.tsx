@@ -76,7 +76,6 @@ export default function Header() {
                     onClick={(e) => {
                       e.preventDefault();
                       signOut();
-                      console.log("name: " + userInfo.name);
                       logout();
                     }}
                   >
